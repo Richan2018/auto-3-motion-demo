@@ -1,0 +1,739 @@
+{
+  "generatedAt": "2026-07-13T01:51:04.098Z",
+  "cases": [
+    {
+      "id": "case-01-icon-hide-restore",
+      "category": "图标列表基础",
+      "title": "单个图标隐藏与恢复",
+      "premise": "初始状态，头像 + 图标1-图标6 显示，紫色 more 不显示，agentbar 为 D/D 且居中。",
+      "action": "点击模拟图标4隐藏，再次点击图标4恢复。",
+      "timeline": "0ms 图标缩小淡出；100ms 后后续图标补位。恢复时后续图标先让位，目标图标延迟淡入放大。",
+      "result": "图标4 在自身中心缩放，后续图标按原来的间隔补位/归位。",
+      "checks": "观察缩放中心是否在图形中央，以及补位是否保持原间隔。",
+      "duration": 2600,
+      "actions": [
+        {
+          "at": 200,
+          "click": "[data-target-index=\"5\"]"
+        },
+        {
+          "at": 1350,
+          "click": "[data-target-index=\"5\"]"
+        }
+      ],
+      "frameDir": "assets/case-videos/case-01-icon-hide-restore-frames",
+      "video": "assets/case-videos/case-01-icon-hide-restore.mp4",
+      "frameCount": 280,
+      "clickMarkers": [
+        {
+          "start": 2,
+          "end": 2.6,
+          "x": 315,
+          "y": 215
+        },
+        {
+          "start": 3.15,
+          "end": 3.75,
+          "x": 315,
+          "y": 215
+        }
+      ]
+    },
+    {
+      "id": "case-02-multiple-hide-middle-restore",
+      "category": "图标列表基础",
+      "title": "连续隐藏与中间恢复",
+      "premise": "初始状态，图标2、图标4 都正在显示。",
+      "action": "依次隐藏图标2、图标4，再恢复图标2。",
+      "timeline": "每次隐藏都先缩小淡出；100ms 后其后的图标按已隐藏数量向前补位。恢复中间项时，后续项反向让位。",
+      "result": "图标4 的隐藏状态保持，图标2 恢复后插回原顺序。",
+      "checks": "确认多项消失时位移量按隐藏项数量累计。",
+      "duration": 3600,
+      "actions": [
+        {
+          "at": 200,
+          "click": "[data-target-index=\"3\"]"
+        },
+        {
+          "at": 1350,
+          "click": "[data-target-index=\"5\"]"
+        },
+        {
+          "at": 2500,
+          "click": "[data-target-index=\"3\"]"
+        }
+      ],
+      "frameDir": "assets/case-videos/case-02-multiple-hide-middle-restore-frames",
+      "video": "assets/case-videos/case-02-multiple-hide-middle-restore.mp4",
+      "frameCount": 339,
+      "clickMarkers": [
+        {
+          "start": 2,
+          "end": 2.6,
+          "x": 175,
+          "y": 215
+        },
+        {
+          "start": 3.15,
+          "end": 3.75,
+          "x": 315,
+          "y": 215
+        },
+        {
+          "start": 4.3,
+          "end": 4.9,
+          "x": 175,
+          "y": 215
+        }
+      ]
+    },
+    {
+      "id": "case-03-add-space-enough",
+      "category": "图标列表自动折叠",
+      "title": "添加图标但空间足够",
+      "premise": "先隐藏左胶囊 D，让 agentbar 收缩，图标列表右侧空间变大。",
+      "action": "点击模拟图标7，将它加入列表。",
+      "timeline": "agentbar 收缩完成后，图标7 直接淡入放大到下一个图标位置，不需要紫色 more。",
+      "result": "图标7 显示，紫色 more 仍隐藏。",
+      "checks": "确认空间足够时不触发溢出占位。",
+      "duration": 2600,
+      "setup": [
+        {
+          "click": "[data-agent-left-target=\"D\"]",
+          "wait": 700
+        }
+      ],
+      "actions": [
+        {
+          "at": 200,
+          "click": "[data-target-index=\"8\"]"
+        }
+      ],
+      "frameDir": "assets/case-videos/case-03-add-space-enough-frames",
+      "video": "assets/case-videos/case-03-add-space-enough.mp4",
+      "frameCount": 280,
+      "clickMarkers": [
+        {
+          "start": 2,
+          "end": 2.6,
+          "x": 525,
+          "y": 215
+        }
+      ]
+    },
+    {
+      "id": "case-04-add-overflow-more",
+      "category": "图标列表自动折叠",
+      "title": "添加图标导致尾部溢出",
+      "premise": "初始 D/D agentbar，图标列表与 agentbar 之间只剩有限空间。",
+      "action": "点击模拟图标7。",
+      "timeline": "图标7 被加入列表，但右侧空间不足；尾部图标被临时收进紫色 more，紫色 more 晚 100ms 出现。",
+      "result": "紫色 more 出现在不会贴住 agentbar 的位置，被收起的图标隐藏在 more 后面。",
+      "checks": "确认最少留 10px，不让图标列表和 agentbar 贴在一起；more 按 86px 宽度参与计算。",
+      "duration": 1800,
+      "actions": [
+        {
+          "at": 200,
+          "click": "[data-target-index=\"8\"]"
+        }
+      ],
+      "frameDir": "assets/case-videos/case-04-add-overflow-more-frames",
+      "video": "assets/case-videos/case-04-add-overflow-more.mp4",
+      "frameCount": 232,
+      "clickMarkers": [
+        {
+          "start": 2,
+          "end": 2.6,
+          "x": 525,
+          "y": 215
+        }
+      ]
+    },
+    {
+      "id": "case-05-more-moves-forward",
+      "category": "图标列表自动折叠",
+      "title": "more 前移承载多图标溢出",
+      "premise": "初始状态，连续添加图标7、图标8。",
+      "action": "先点击图标7，再点击图标8。",
+      "timeline": "第二个图标加入后，如果 more 放在最后一个位置仍然会贴近 agentbar，它会继续向前寻找安全位置。",
+      "result": "紫色 more 前移，多枚尾部图标被临时收起。",
+      "checks": "确认 more 位置按 86px 宽度与 10px 安全距离重新计算。",
+      "duration": 3000,
+      "actions": [
+        {
+          "at": 200,
+          "click": "[data-target-index=\"8\"]"
+        },
+        {
+          "at": 1450,
+          "click": "[data-target-index=\"9\"]"
+        }
+      ],
+      "frameDir": "assets/case-videos/case-05-more-moves-forward-frames",
+      "video": "assets/case-videos/case-05-more-moves-forward.mp4",
+      "frameCount": 303,
+      "clickMarkers": [
+        {
+          "start": 2,
+          "end": 2.6,
+          "x": 525,
+          "y": 215
+        },
+        {
+          "start": 3.25,
+          "end": 3.85,
+          "x": 595,
+          "y": 215
+        }
+      ]
+    },
+    {
+      "id": "case-06-hide-front-still-overflow",
+      "category": "图标列表自动折叠",
+      "title": "隐藏前方图标但仍需 more",
+      "premise": "先添加图标7-图标9，形成多图标溢出。",
+      "action": "隐藏靠前的图标1。",
+      "timeline": "图标1 缩小淡出；后续图标向前补位，被收起的第一个图标补入，但 more 保留。",
+      "result": "列表更紧凑，但空间仍不足，紫色 more 继续存在。",
+      "checks": "确认溢出区第一个图标可以补入，其他溢出状态保持。",
+      "duration": 2600,
+      "setup": [
+        {
+          "click": "[data-target-index=\"8\"]",
+          "wait": 650
+        },
+        {
+          "click": "[data-target-index=\"9\"]",
+          "wait": 650
+        },
+        {
+          "click": "[data-target-index=\"10\"]",
+          "wait": 750
+        }
+      ],
+      "actions": [
+        {
+          "at": 200,
+          "click": "[data-target-index=\"2\"]"
+        }
+      ],
+      "frameDir": "assets/case-videos/case-06-hide-front-still-overflow-frames",
+      "video": "assets/case-videos/case-06-hide-front-still-overflow.mp4",
+      "frameCount": 280,
+      "clickMarkers": [
+        {
+          "start": 2,
+          "end": 2.6,
+          "x": 105,
+          "y": 215
+        }
+      ]
+    },
+    {
+      "id": "case-07-hide-front-enough",
+      "category": "图标列表自动折叠",
+      "title": "隐藏前方图标后空间足够",
+      "premise": "先添加图标7，触发一次溢出。",
+      "action": "隐藏靠前的图标1。",
+      "timeline": "图标1 淡出；列表前移后空间足够，more 淡出，被收起的图标补回。",
+      "result": "紫色 more 消失，图标7 显示在列表中。",
+      "checks": "确认 more 消失和补回时序没有跳位。",
+      "duration": 2600,
+      "setup": [
+        {
+          "click": "[data-target-index=\"8\"]",
+          "wait": 750
+        }
+      ],
+      "actions": [
+        {
+          "at": 200,
+          "click": "[data-target-index=\"2\"]"
+        }
+      ],
+      "frameDir": "assets/case-videos/case-07-hide-front-enough-frames",
+      "video": "assets/case-videos/case-07-hide-front-enough.mp4",
+      "frameCount": 280,
+      "clickMarkers": [
+        {
+          "start": 2,
+          "end": 2.6,
+          "x": 105,
+          "y": 215
+        }
+      ]
+    },
+    {
+      "id": "case-08-purple-more-expand-collapse",
+      "category": "紫色 more 展开/收起",
+      "title": "more 展开与收起",
+      "premise": "先添加图标7、图标8，形成紫色 more 和多个被收起的图标。",
+      "action": "点击紫色 more 展开，再次点击收起。",
+      "timeline": "展开：more 移到列表末尾后一位，agentbar 同距右移并淡出；第一个溢出图标 50ms 后出现。收起：溢出图标从后往前隐藏，100ms 后 more 和 agentbar 回归。",
+      "result": "展开态展示用户已经加入列表的全部图标，收起态恢复当前空间下的折叠布局。",
+      "checks": "确认 agentbar 位移距离等于 more 位移距离。",
+      "duration": 3600,
+      "setup": [
+        {
+          "click": "[data-target-index=\"8\"]",
+          "wait": 650
+        },
+        {
+          "click": "[data-target-index=\"9\"]",
+          "wait": 750
+        }
+      ],
+      "actions": [
+        {
+          "at": 200,
+          "click": "#icon-list-more .more-button"
+        },
+        {
+          "at": 1900,
+          "click": "#icon-list-more .more-button"
+        }
+      ],
+      "frameDir": "assets/case-videos/case-08-purple-more-expand-collapse-frames",
+      "video": "assets/case-videos/case-08-purple-more-expand-collapse.mp4",
+      "frameCount": 339,
+      "clickMarkers": [
+        {
+          "start": 2,
+          "end": 2.6,
+          "x": 385,
+          "y": 15
+        },
+        {
+          "start": 3.7,
+          "end": 4.3,
+          "x": 665,
+          "y": 15
+        }
+      ]
+    },
+    {
+      "id": "case-09-expanded-add-icon",
+      "category": "紫色 more 展开/收起",
+      "title": "展开期间继续添加图标",
+      "premise": "先添加图标7 并展开紫色 more。",
+      "action": "展开态点击模拟图标8。",
+      "timeline": "图标8 加入列表后，more 继续向后移动，agentbar 跟随修正偏移，新增图标按展开出现规则淡入。",
+      "result": "展开态保持，用户已加入列表的图标全部显示。",
+      "checks": "确认展开态不会因 agentbar 安全距离重新折叠。",
+      "duration": 3200,
+      "setup": [
+        {
+          "click": "[data-target-index=\"8\"]",
+          "wait": 750
+        },
+        {
+          "click": "#icon-list-more .more-button",
+          "wait": 850
+        }
+      ],
+      "actions": [
+        {
+          "at": 300,
+          "click": "[data-target-index=\"9\"]"
+        }
+      ],
+      "frameDir": "assets/case-videos/case-09-expanded-add-icon-frames",
+      "video": "assets/case-videos/case-09-expanded-add-icon.mp4",
+      "frameCount": 309,
+      "clickMarkers": [
+        {
+          "start": 2,
+          "end": 2.6,
+          "x": 595,
+          "y": 215
+        }
+      ]
+    },
+    {
+      "id": "case-10-expanded-remove-no-more",
+      "category": "紫色 more 展开/收起",
+      "title": "展开期间减少到不需要 more",
+      "premise": "先添加图标7、图标8 并展开紫色 more。",
+      "action": "展开态移除图标8，再移除图标7。",
+      "timeline": "图标减少后重新评估折叠布局；当不再需要收起任何图标时，more 执行消失动画，agentbar 回中并淡入。",
+      "result": "退出展开态，紫色 more 隐藏。",
+      "checks": "确认不需要 more 时不会保留一个空的展开入口。",
+      "duration": 3600,
+      "setup": [
+        {
+          "click": "[data-target-index=\"8\"]",
+          "wait": 650
+        },
+        {
+          "click": "[data-target-index=\"9\"]",
+          "wait": 650
+        },
+        {
+          "click": "#icon-list-more .more-button",
+          "wait": 850
+        }
+      ],
+      "actions": [
+        {
+          "at": 250,
+          "click": "[data-target-index=\"9\"]"
+        },
+        {
+          "at": 1450,
+          "click": "[data-target-index=\"8\"]"
+        }
+      ],
+      "frameDir": "assets/case-videos/case-10-expanded-remove-no-more-frames",
+      "video": "assets/case-videos/case-10-expanded-remove-no-more.mp4",
+      "frameCount": 336,
+      "clickMarkers": [
+        {
+          "start": 2,
+          "end": 2.6,
+          "x": 595,
+          "y": 215
+        },
+        {
+          "start": 3.2,
+          "end": 3.8,
+          "x": 525,
+          "y": 215
+        }
+      ]
+    },
+    {
+      "id": "case-11-capsule-switches",
+      "category": "Agentbar 胶囊",
+      "title": "左右胶囊互换",
+      "premise": "初始左 D、右 D、黄色更多显示。",
+      "action": "点击左1切换为 A，再点击右2切换为 B。",
+      "timeline": "旧胶囊 scale/opacity 消失；50ms 后新胶囊出现，agentbar 宽度自适应并保持居中。",
+      "result": "左 A、右 B 显示，agentbar 以 x=800 为中心。",
+      "checks": "确认左右两侧共用同一套互换时序。",
+      "duration": 3200,
+      "actions": [
+        {
+          "at": 200,
+          "click": "[data-agent-left-target=\"A\"]"
+        },
+        {
+          "at": 1650,
+          "click": "[data-agent-right-target=\"B\"]"
+        }
+      ],
+      "frameDir": "assets/case-videos/case-11-capsule-switches-frames",
+      "video": "assets/case-videos/case-11-capsule-switches.mp4",
+      "frameCount": 315,
+      "clickMarkers": [
+        {
+          "start": 2,
+          "end": 2.6,
+          "x": 106,
+          "y": 383
+        },
+        {
+          "start": 3.45,
+          "end": 4.05,
+          "x": 516,
+          "y": 383
+        }
+      ]
+    },
+    {
+      "id": "case-12-capsule-hide-restore",
+      "category": "Agentbar 胶囊",
+      "title": "当前胶囊隐藏与恢复",
+      "premise": "初始左 D、右 D。",
+      "action": "点击左4隐藏左 D，再次点击左4恢复。",
+      "timeline": "隐藏：D 先消失，50ms 后 agentbar 收缩，黄色更多同步消失。恢复：agentbar 先扩展，黄色更多同步出现，D 延迟出现。",
+      "result": "左胶囊隐藏时 AI 与右胶囊无间距；恢复后间距回到 10px。",
+      "checks": "确认只剩一个胶囊时黄色更多自动隐藏。",
+      "duration": 3200,
+      "actions": [
+        {
+          "at": 200,
+          "click": "[data-agent-left-target=\"D\"]"
+        },
+        {
+          "at": 1650,
+          "click": "[data-agent-left-target=\"D\"]"
+        }
+      ],
+      "frameDir": "assets/case-videos/case-12-capsule-hide-restore-frames",
+      "video": "assets/case-videos/case-12-capsule-hide-restore.mp4",
+      "frameCount": 315,
+      "clickMarkers": [
+        {
+          "start": 2,
+          "end": 2.6,
+          "x": 316,
+          "y": 383
+        },
+        {
+          "start": 3.45,
+          "end": 4.05,
+          "x": 316,
+          "y": 383
+        }
+      ]
+    },
+    {
+      "id": "case-13-yellow-more-toggle",
+      "category": "Agentbar 黄色更多",
+      "title": "黄色更多手动开关",
+      "premise": "初始左右胶囊都可见，黄色更多显示。",
+      "action": "点击“开关”隐藏黄色更多，再次点击显示。",
+      "timeline": "关闭：黄色更多先缩小淡出，100ms 后 agentbar 收缩居中。开启：agentbar 先扩展，100ms 后黄色更多出现。",
+      "result": "agentbar 宽度在包含/不包含黄色更多之间切换，并始终居中。",
+      "checks": "确认黄色更多只在左右胶囊都可见时有效。",
+      "duration": 3200,
+      "actions": [
+        {
+          "at": 200,
+          "click": "[data-agent-more-toggle]"
+        },
+        {
+          "at": 1650,
+          "click": "[data-agent-more-toggle]"
+        }
+      ],
+      "frameDir": "assets/case-videos/case-13-yellow-more-toggle-frames",
+      "video": "assets/case-videos/case-13-yellow-more-toggle.mp4",
+      "frameCount": 315,
+      "clickMarkers": [
+        {
+          "start": 2,
+          "end": 2.6,
+          "x": 796,
+          "y": 383
+        },
+        {
+          "start": 3.45,
+          "end": 4.05,
+          "x": 796,
+          "y": 383
+        }
+      ]
+    },
+    {
+      "id": "case-14-agent-grow-forces-overflow",
+      "category": "联动与边界",
+      "title": "agentbar 变宽导致图标预先溢出",
+      "premise": "先隐藏左 D 释放空间，再添加图标7，使它在窄 agentbar 下可显示。",
+      "action": "再次点击左4恢复 D，使 agentbar 变宽。",
+      "timeline": "空间即将不足时，图标列表先隐藏需要溢出的图标；50ms 后 agentbar 变宽、紫色 more 出现、胶囊出现。",
+      "result": "agentbar 变宽不会与图标列表交叉。",
+      "checks": "确认图标隐藏早于 agentbar 变宽。",
+      "duration": 3200,
+      "setup": [
+        {
+          "click": "[data-agent-left-target=\"D\"]",
+          "wait": 750
+        },
+        {
+          "click": "[data-target-index=\"8\"]",
+          "wait": 750
+        }
+      ],
+      "actions": [
+        {
+          "at": 250,
+          "click": "[data-agent-left-target=\"D\"]"
+        }
+      ],
+      "frameDir": "assets/case-videos/case-14-agent-grow-forces-overflow-frames",
+      "video": "assets/case-videos/case-14-agent-grow-forces-overflow.mp4",
+      "frameCount": 312,
+      "clickMarkers": [
+        {
+          "start": 2,
+          "end": 2.6,
+          "x": 316,
+          "y": 383
+        }
+      ]
+    },
+    {
+      "id": "case-15-agent-shrink-releases-overflow",
+      "category": "联动与边界",
+      "title": "agentbar 变窄释放溢出图标",
+      "premise": "先添加图标7，初始宽 agentbar 下产生溢出和紫色 more。",
+      "action": "点击左4隐藏左 D，让 agentbar 收缩。",
+      "timeline": "胶囊先消失；50ms 后 agentbar 收缩，图标列表同步补回，紫色 more 淡出。",
+      "result": "释放出的空间被溢出图标补入。",
+      "checks": "确认图标补回和 agentbar 收缩同步。",
+      "duration": 2600,
+      "setup": [
+        {
+          "click": "[data-target-index=\"8\"]",
+          "wait": 750
+        }
+      ],
+      "actions": [
+        {
+          "at": 250,
+          "click": "[data-agent-left-target=\"D\"]"
+        }
+      ],
+      "frameDir": "assets/case-videos/case-15-agent-shrink-releases-overflow-frames",
+      "video": "assets/case-videos/case-15-agent-shrink-releases-overflow.mp4",
+      "frameCount": 277,
+      "clickMarkers": [
+        {
+          "start": 2,
+          "end": 2.6,
+          "x": 316,
+          "y": 383
+        }
+      ]
+    },
+    {
+      "id": "case-16-expanded-agent-change-collapse",
+      "category": "联动与边界",
+      "title": "展开期间 agentbar 宽度变化后收起",
+      "premise": "先添加图标7、图标8 并展开紫色 more，agentbar 已淡出并右移。",
+      "action": "展开期间点击左1切换胶囊，再点击紫色 more 收起。",
+      "timeline": "展开期间 agentbar 内部宽度更新；收起时按最新 agentbar 宽度重新计算 more 回归位置。",
+      "result": "收起后 agentbar 以新宽度居中，more 回到当前正确折叠位置。",
+      "checks": "确认 more 不回到旧位置，而是按最新宽度回归。",
+      "duration": 4200,
+      "setup": [
+        {
+          "click": "[data-target-index=\"8\"]",
+          "wait": 650
+        },
+        {
+          "click": "[data-target-index=\"9\"]",
+          "wait": 650
+        },
+        {
+          "click": "#icon-list-more .more-button",
+          "wait": 850
+        }
+      ],
+      "actions": [
+        {
+          "at": 250,
+          "click": "[data-agent-left-target=\"A\"]"
+        },
+        {
+          "at": 1850,
+          "click": "#icon-list-more .more-button"
+        }
+      ],
+      "frameDir": "assets/case-videos/case-16-expanded-agent-change-collapse-frames",
+      "video": "assets/case-videos/case-16-expanded-agent-change-collapse.mp4",
+      "frameCount": 372,
+      "clickMarkers": [
+        {
+          "start": 2,
+          "end": 2.6,
+          "x": 106,
+          "y": 383
+        },
+        {
+          "start": 3.6,
+          "end": 4.2,
+          "x": 665,
+          "y": 15
+        }
+      ]
+    },
+    {
+      "id": "case-17-busy-click-ignored",
+      "category": "联动与边界",
+      "title": "动画中再次点击被忽略",
+      "premise": "初始 D/D agentbar。",
+      "action": "快速点击左1后立刻点击左2。",
+      "timeline": "左1 触发 D→A 动画；动画还没结束时，左2 的点击会被忽略。",
+      "result": "最终仍停留在左 A，而不是切到 B。",
+      "checks": "这是当前稳定策略，后续可讨论是否要支持排队或打断。",
+      "duration": 1800,
+      "actions": [
+        {
+          "at": 200,
+          "click": "[data-agent-left-target=\"A\"]"
+        },
+        {
+          "at": 260,
+          "click": "[data-agent-left-target=\"B\"]"
+        }
+      ],
+      "frameDir": "assets/case-videos/case-17-busy-click-ignored-frames",
+      "video": "assets/case-videos/case-17-busy-click-ignored.mp4",
+      "frameCount": 232,
+      "clickMarkers": [
+        {
+          "start": 2,
+          "end": 2.6,
+          "x": 106,
+          "y": 383
+        },
+        {
+          "start": 2.28,
+          "end": 2.66,
+          "x": 176,
+          "y": 383
+        }
+      ]
+    },
+    {
+      "id": "case-18-empty-minimal-state",
+      "category": "联动与边界",
+      "title": "极少图标与无 more 状态",
+      "premise": "初始图标列表有头像 + 图标1-图标6。",
+      "action": "连续隐藏图标6、图标5、图标4、图标3。",
+      "timeline": "每个图标按 1→0.5、1→0 淡出，后续图标依次补位；由于图标数量减少，不出现紫色 more。",
+      "result": "列表进入极少图标状态，agentbar 不受影响。",
+      "checks": "确认低数量状态没有空 more 或异常跳位。",
+      "duration": 4200,
+      "actions": [
+        {
+          "at": 200,
+          "click": "[data-target-index=\"7\"]"
+        },
+        {
+          "at": 1150,
+          "click": "[data-target-index=\"6\"]"
+        },
+        {
+          "at": 2100,
+          "click": "[data-target-index=\"5\"]"
+        },
+        {
+          "at": 3050,
+          "click": "[data-target-index=\"4\"]"
+        }
+      ],
+      "frameDir": "assets/case-videos/case-18-empty-minimal-state-frames",
+      "video": "assets/case-videos/case-18-empty-minimal-state.mp4",
+      "frameCount": 375,
+      "clickMarkers": [
+        {
+          "start": 2,
+          "end": 2.6,
+          "x": 455,
+          "y": 215
+        },
+        {
+          "start": 2.95,
+          "end": 3.55,
+          "x": 385,
+          "y": 215
+        },
+        {
+          "start": 3.9,
+          "end": 4.5,
+          "x": 315,
+          "y": 215
+        },
+        {
+          "start": 4.85,
+          "end": 5.45,
+          "x": 245,
+          "y": 215
+        }
+      ]
+    }
+  ]
+}
